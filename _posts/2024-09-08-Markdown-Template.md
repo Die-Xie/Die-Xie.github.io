@@ -21,7 +21,7 @@ mermaid: true # 支持mermaid图表
 image:
   path: https://picx.zhimg.com/70/v2-eaec95835ad51dbdb0ed240cae7dc4f1_1440w.avis?source=172ae18b&biz_tag=Post # 封面图
   lqip: data:image/webp # lqip占位符，用于图片懒加载
-  alt: ————这是头图的描述———— # 头图描述
+  alt: 『这是头图的描述』 # 头图描述
 ---
 
 > 该文档参考至 [模板说明](https://chirpy.cotes.page/posts/write-a-new-post/)

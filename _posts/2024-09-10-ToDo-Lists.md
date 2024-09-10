@@ -7,8 +7,8 @@ author: [diexie, ] # 此处可以简写，详细添加在 _data/authors.yml 中
 date: 2024-09-08 11:33:00 +0800
 
 pin: True # 置顶
-categories: [杂项, todo] # 分类,第一个为主分类
-tags: [todo] # 标签
+categories: [杂项, ToDoLists] # 分类,第一个为主分类
+tags: [ToDo] # 标签
 
 math: true # 支持数学公式
 toc: true # 支持侧边目录
@@ -21,7 +21,7 @@ mermaid: true # 支持mermaid图表
 image:
   path: https://s2.loli.net/2024/09/10/t7jiBhNyYDdpCVM.jpg # 封面图
   lqip: data:image/webp # lqip占位符，用于图片懒加载
-  alt: 《Ritorno Al Paese Natio》 Giovanni Segantini 1895 # 头图描述
+  alt: 『Ritorno Al Paese Natio』Giovanni Segantini 1895 # 头图描述
 ---
 
 # 搬运/更新列表
