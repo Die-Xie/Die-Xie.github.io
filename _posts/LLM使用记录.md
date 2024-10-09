@@ -18,6 +18,8 @@ geardrails：用于LLM保护的库
 
 operator @: Python3.5新增的矩阵乘法运算符, torch.tensive @ torch.tensive 等价于torch.matmul(torch.tensive, torch.tensive)
 
+nn.parameter: 用于定义模型参数, 是放在Module中可训练的参数
+
 Llama3运行脚本:
 
 ```shell
