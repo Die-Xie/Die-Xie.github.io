@@ -87,6 +87,101 @@ if __name__ == "__main__":
     produce(c)
 ```
 
+## 高级特性/包
+
+### 关于修饰器typing.overload
+
+> 注意: 重载与多态的区别
+
+由于python是动态类型语言，不支持函数重载，但是可以通过`typing.overload`实现函数重载。
+
+```python
+from typing import overload
+
+class A:
+    @overload
+    def foo(self, x: int) -> int:
+        pass
+
+    @overload
+    def foo(self, x: str) -> str:
+        pass
+
+    def foo(self, x):
+        if isinstance(x, int):
+            return x + 1
+        elif isinstance(x, str):
+            return x + "!"
+        else:
+            raise TypeError("x must be int or str")
+```
+
+### 关于修饰器classmethod和staticmethod
+
+区别：
+
+1. `@classmethod`修饰的方法，第一个参数是类对象，通常命名为`cls`，可以通过类对象调用，也可以通过实例对象调用。该方法**可以访问类属性，不能访问实例属性**。
+   
+  ```python
+    class A:
+        @classmethod
+        def foo(cls):
+            print(cls)
+    A.foo() 
+    # output: >>> <class '__main__.A'>
+    # -------------------------
+    # 常用于定义工厂方法:
+    class B:
+        def __init__(self, value):
+            self.value = value
+        @classmethod
+        def create(cls, value):
+            return cls(value)
+    b = B.create(10)
+    # -------------------------
+  ```
+
+2. `@staticmethod`修饰的方法，不需要传入类对象或实例对象，通常命名为`self`，可以通过类对象调用，也可以通过实例对象调用。该方法**不能访问类属性，也不能访问实例属性**。
+
+  ```python
+    class A:
+        @staticmethod
+        def foo():
+            print("Hello, world!")
+    A.foo()
+    # output: >>> Hello, world!
+  ```
+
+### 包：weakref
+
+> 关于深拷贝和浅拷贝：
+> 深拷贝和浅拷贝的区别在于，浅拷贝只拷贝对象的引用，而深拷贝会拷贝对象的所有内容。
+> 在Python赋值中，不明确区分深拷贝和浅拷贝，一般对静态数据类型(如int, str)进行赋值时，会进行深拷贝，对于动态数据类型(如list, dict)进行赋值时，会进行浅拷贝。
+
+> 这个模块是我在翻torch源码时发现的，torch中的`torch.utils.hooks`模块中创建`hook`的`handle`对象时使用
+
+`weakref`模块可以创建弱引用，弱引用不会增加对象的引用计数，当对象的引用计数为0时，对象会被销毁。
+
+该模块可以用于解决循环引用问题，例如一个对象A引用了对象B，对象B又引用了对象A，这样两个对象的引用计数永远不会为0，导致内存泄漏。
+
+```python
+import weakref
+
+class A:
+    def __init__(self, value):
+        self.value = value
+
+    def __repr__(self):
+        return str(self.value)
+
+a = A(10)
+d = weakref.WeakValueDictionary() # 创建一个弱引用字典
+d["a"] = a # 将对象a加入字典
+print(d["a"]) # 10
+del a # 删除对象a
+print(d["a"]) # None
+```
+
 ## 杂记
 
 str.encode()和bytes.decode()是互逆操作，str.encode()将字符串编码为字节，bytes.decode()将字节解码为字符串。
@@ -97,6 +192,22 @@ s = "Hello, world!"
 b = s.encode("utf-8")
 print(b) # b'Hello, world!'
 print(b.decode("utf-8")) # Hello, world!
+
+```
+
+python的复杂列表推导式:
+
+```python
+
+li = [i for i in range(5) for j in range(10) for k in range(20)]
+
+# 等价于
+
+li = []
+for i in range(5):
+    for j in range(10):
+        for k in range(20):
+            li.append(i)
 
 ```
 
