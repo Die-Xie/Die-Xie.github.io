@@ -14,6 +14,8 @@ typer: python命令行解析库
 
 geardrails：用于LLM保护的库
 
+[ScienceWorld](https://github.com/allenai/ScienceWorld?tab=readme-ov-file): 一个文本驱动的游戏测试环境
+
 ### 其它
 
 operator @: Python3.5新增的矩阵乘法运算符, torch.tensive @ torch.tensive 等价于torch.matmul(torch.tensive, torch.tensive)
