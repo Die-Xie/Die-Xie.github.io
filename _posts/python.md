@@ -211,3 +211,34 @@ for i in range(5):
 
 ```
 
+关于运算符@: Python3.5新增的矩阵乘法运算符, `torch.tensive @ torch.tensive` 等价于`torch.matmul(torch.tensive, torch.tensive)`
+
+关于torch的多维张量的乘法: 前几个维度可以当作batch维度，最后两个维度可以当作矩阵维度，这样可以实现batch矩阵乘法
+
+```python
+import torch
+
+a = torch.randn(3, 4, 5)
+b = torch.randn(3, 5, 4)
+c = a @ b
+print(c.size()) # torch.Size([3, 4, 4])
+
+#-------------------------
+
+a = torch.randn(3, 4, 5, 6)
+b = torch.randn(3, 5, 6, 4)
+c = a @ b
+print(c.size()) # torch.Size([3, 4, 5, 4])
+```
+
+nn.Linear(in_features, out_features)可以处理多维的tensor，只要最后一个维度是in_features，前面的维度可以当作batch维度
+
+```python
+import torch
+
+a = torch.randn(3, 4, 5)
+linear = torch.nn.Linear(5, 6)
+b = linear(a)
+print(b.size()) # torch.Size([3, 4, 6])
+```
+
