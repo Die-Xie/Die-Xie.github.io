@@ -36,6 +36,7 @@
       }
     ]
   ```
+  原生支持分词:`editor.wordSegmenterLocales": ["zh-CN"]`
 
 ## 插件开发
 
