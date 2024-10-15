@@ -24,6 +24,17 @@
       "commands": ["cjkWordHandler.deleteWordStartLeft"]
     }
     ]
+
+    "vim.visualModeKeyBindings": [
+      {
+        "before": ["w"],
+        "commands": ["cjkWordHandler.cursorWordEndRightSelect"]
+      },
+      {
+        "before": ["b"],
+        "commands": ["cjkWordHandler.cursorWordStartLeftSelect"]
+      }
+    ]
   ```
 
 ## 插件开发
