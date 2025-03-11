@@ -7,7 +7,7 @@ author: [diexie, ] # 此处可以简写，详细添加在 _data/authors.yml 中
 date: 2024-09-08 11:33:00 +0800
 
 pin: false # 置顶
-categories: [杂项, Demo] # 分类,第一个为主分类
+categories: [杂项, 模板] # 分类,第一个为主分类
 tags: [模板] # 标签
 
 math: true # 支持数学公式
